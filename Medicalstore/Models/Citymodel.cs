@@ -9,5 +9,6 @@ namespace Medicalstore.Models
     {
         public int Id { get; set; }
         public string Cityname { get; set; }
+        //test data
     }
 }
