@@ -9,10 +9,6 @@ namespace Medicalstore.Models
     public class DrugDetails
     {
         //test
-        //test
-        //test
-        //test
-        //test
         public int Drug_id { get; set; }
         [Required(ErrorMessage = "Required field")]
         public string Drug_name { get; set; }
