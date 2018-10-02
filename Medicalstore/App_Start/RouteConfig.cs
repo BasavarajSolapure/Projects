@@ -15,8 +15,8 @@ namespace Medicalstore
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "Medicle/{action}/{id}",
+                defaults: new { controller = "Medicle", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

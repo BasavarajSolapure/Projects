@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Medicalstore.tblDrug>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-striped table-hover sortable" style="border:1px solid turquoise !important">
+        @if ( Model==null)
+        {
+            <tr>
+                <td colspan="10">No Record's found.</td>
+            </tr>
+        }
+        else
+        {
+            <thead>
+                <tr style="background-color:#b9d8f8">
+                    <th>Medicine Name</th>
+                    <th>Manufacturer Name</th>
+                    <th>Manufactured Date</th>
+                    <th>Expiry Date</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.drug_name</td>
+                    <td>@item.manufacture_name</td>
+                    <td>@item.manufacture_date</td>
+                    <td>@item.expiration_date</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.drug_id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.drug_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.drug_id })
+                    </td>
+                </tr>
+            
+        }
+        }
+    </table>
+    <p style="float:right">
+        @Html.ActionLink("Add New Drug", "Create")
+    </p>
+</div>
+

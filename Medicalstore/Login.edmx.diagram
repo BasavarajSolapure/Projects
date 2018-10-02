@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb8b1501742949d59ffbe6db8cb5f7e2" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalstoreModel.tblCustomer" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="MedicalstoreModel.tblDrug" Width="1.5" PointX="8.375" PointY="4.125" />
+        <EntityTypeShape EntityType="MedicalstoreModel.tblPayment" Width="1.5" PointX="11.125" PointY="0.875" />
+        <EntityTypeShape EntityType="MedicalstoreModel.tblUser" Width="1.5" PointX="4.375" PointY="1" />
+        <AssociationConnector Association="MedicalstoreModel.FK__tblCustom__drug___36B12243" />
+        <AssociationConnector Association="MedicalstoreModel.FK__tblCustom__user___33D4B598" />
+        <AssociationConnector Association="MedicalstoreModel.FK__tblPaymen__cust___35BCFE0A" />
+        <AssociationConnector Association="MedicalstoreModel.FK__tblPaymen__user___34C8D9D1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

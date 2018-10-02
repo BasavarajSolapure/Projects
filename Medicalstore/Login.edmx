@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MedicalstoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="customer_address" Type="nvarchar" MaxLength="50" />
+          <Property Name="customer_contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="drug_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDrugs">
+          <Key>
+            <PropertyRef Name="drug_id" />
+          </Key>
+          <Property Name="drug_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="drug_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="manufacture_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="manufacture_date" Type="datetime" />
+          <Property Name="expiration_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="drugs" Type="nvarchar" MaxLength="50" />
+          <Property Name="payment_date" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="cust_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="30" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LoginFailedCount" Type="int" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="USERTYPE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tblCustom__drug___36B12243">
+          <End Role="tblDrugs" Type="Self.tblDrugs" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDrugs">
+              <PropertyRef Name="drug_id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="drug_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCustom__user___33D4B598">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__cust___35BCFE0A">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="cust_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__user___34C8D9D1">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MedicalstoreModelStoreContainer">
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDrugs" EntityType="Self.tblDrugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblCustom__drug___36B12243" Association="Self.FK__tblCustom__drug___36B12243">
+            <End Role="tblDrugs" EntitySet="tblDrugs" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCustom__user___33D4B598" Association="Self.FK__tblCustom__user___33D4B598">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__cust___35BCFE0A" Association="Self.FK__tblPaymen__cust___35BCFE0A">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblPayment" EntitySet="tblPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__user___34C8D9D1" Association="Self.FK__tblPaymen__user___34C8D9D1">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblPayment" EntitySet="tblPayment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedicalstoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MedicalstoreEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetLoginInfo" ReturnType="Collection(String)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblCustomers" EntityType="MedicalstoreModel.tblCustomer" />
+          <EntitySet Name="tblDrugs" EntityType="MedicalstoreModel.tblDrug" />
+          <EntitySet Name="tblPayments" EntityType="MedicalstoreModel.tblPayment" />
+          <EntitySet Name="tblUsers" EntityType="MedicalstoreModel.tblUser" />
+          <AssociationSet Name="FK__tblCustom__drug___36B12243" Association="MedicalstoreModel.FK__tblCustom__drug___36B12243">
+            <End Role="tblDrug" EntitySet="tblDrugs" />
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCustom__user___33D4B598" Association="MedicalstoreModel.FK__tblCustom__user___33D4B598">
+            <End Role="tblUser1" EntitySet="tblUsers" />
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__cust___35BCFE0A" Association="MedicalstoreModel.FK__tblPaymen__cust___35BCFE0A">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblPayment" EntitySet="tblPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__user___34C8D9D1" Association="MedicalstoreModel.FK__tblPaymen__user___34C8D9D1">
+            <End Role="tblUser1" EntitySet="tblUsers" />
+            <End Role="tblPayment" EntitySet="tblPayments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="drug_id" Type="Int32" />
+          <NavigationProperty Name="tblDrug" Relationship="MedicalstoreModel.FK__tblCustom__drug___36B12243" FromRole="tblCustomer" ToRole="tblDrug" />
+          <NavigationProperty Name="tblUser" Relationship="MedicalstoreModel.FK__tblCustom__user___33D4B598" FromRole="tblCustomer" ToRole="tblUser1" />
+          <NavigationProperty Name="tblPayments" Relationship="MedicalstoreModel.FK__tblPaymen__cust___35BCFE0A" FromRole="tblCustomer" ToRole="tblPayment" />
+        </EntityType>
+        <EntityType Name="tblDrug">
+          <Key>
+            <PropertyRef Name="drug_id" />
+          </Key>
+          <Property Name="drug_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="drug_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="manufacture_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="manufacture_date" Type="DateTime" Precision="3" />
+          <Property Name="expiration_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCustomers" Relationship="MedicalstoreModel.FK__tblCustom__drug___36B12243" FromRole="tblDrug" ToRole="tblCustomer" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="drugs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payment_date" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="cust_id" Type="Int32" />
+          <NavigationProperty Name="tblCustomer" Relationship="MedicalstoreModel.FK__tblPaymen__cust___35BCFE0A" FromRole="tblPayment" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblUser" Relationship="MedicalstoreModel.FK__tblPaymen__user___34C8D9D1" FromRole="tblPayment" ToRole="tblUser1" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="LoginFailedCount" Type="Int32" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="USERTYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCustomers" Relationship="MedicalstoreModel.FK__tblCustom__user___33D4B598" FromRole="tblUser1" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblPayments" Relationship="MedicalstoreModel.FK__tblPaymen__user___34C8D9D1" FromRole="tblUser1" ToRole="tblPayment" />
+        </EntityType>
+        <Association Name="FK__tblCustom__drug___36B12243">
+          <End Type="MedicalstoreModel.tblDrug" Role="tblDrug" Multiplicity="0..1" />
+          <End Type="MedicalstoreModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDrug">
+              <PropertyRef Name="drug_id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="drug_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCustom__user___33D4B598">
+          <End Type="MedicalstoreModel.tblUser" Role="tblUser1" Multiplicity="0..1" />
+          <End Type="MedicalstoreModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser1">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__cust___35BCFE0A">
+          <End Type="MedicalstoreModel.tblCustomer" Role="tblCustomer" Multiplicity="0..1" />
+          <End Type="MedicalstoreModel.tblPayment" Role="tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="cust_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__user___34C8D9D1">
+          <End Type="MedicalstoreModel.tblUser" Role="tblUser1" Multiplicity="0..1" />
+          <End Type="MedicalstoreModel.tblPayment" Role="tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser1">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MedicalstoreModelStoreContainer" CdmEntityContainer="MedicalstoreEntities">
+          <FunctionImportMapping FunctionImportName="GetLoginInfo" FunctionName="MedicalstoreModel.Store.GetLoginInfo" />
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="MedicalstoreModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="drug_id" ColumnName="drug_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDrugs">
+            <EntityTypeMapping TypeName="MedicalstoreModel.tblDrug">
+              <MappingFragment StoreEntitySet="tblDrugs">
+                <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+                <ScalarProperty Name="manufacture_date" ColumnName="manufacture_date" />
+                <ScalarProperty Name="manufacture_name" ColumnName="manufacture_name" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+                <ScalarProperty Name="drug_id" ColumnName="drug_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayments">
+            <EntityTypeMapping TypeName="MedicalstoreModel.tblPayment">
+              <MappingFragment StoreEntitySet="tblPayment">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+                <ScalarProperty Name="drugs" ColumnName="drugs" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="MedicalstoreModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="USERTYPE" ColumnName="USERTYPE" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

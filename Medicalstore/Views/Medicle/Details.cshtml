@@ -1,0 +1,29 @@
+﻿@model Medicalstore.tblDrug
+
+<div width="100%" height="100%">
+    <h4 style="color:cornflowerblue">Drug Details</h4>
+    <table width="60%" style="background-color:#ddf1f7" class="table-bordered table-condensed table-responsive sortable">
+        <tr>
+            <td width="20%">Drug Name </td>
+            <td width="40%">@Html.DisplayFor(model => model.drug_name)</td>
+        </tr>
+        <tr>
+            <td>Manufacturer Name </td>
+            <td>@Html.DisplayFor(model => model.manufacture_name)</td>
+        </tr>
+        <tr>
+            <td>Manufactured Date </td>
+            <td>@Html.DisplayFor(model => model.manufacture_date)</td>
+        </tr>
+        <tr>
+            <td>Expiry Date </td>
+            <td>@Html.DisplayFor(model => model.expiration_date)</td>
+        </tr>
+
+    </table>
+</div>
+<p style="margin-top:20px">
+
+    <input onclick="location.href='@Url.Action("Edit", "Medicle",new { id = Model.drug_id })'" type="button" value="Edit" class="btn btn-primary" />
+    <input onclick="location.href='@Url.Action("DrugDetails", "Medicle",new { id = Model.drug_id })'" type="button" value="Back to List" class="btn btn-primary" />
+</p>

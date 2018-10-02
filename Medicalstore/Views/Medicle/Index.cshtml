@@ -1,0 +1,78 @@
+﻿@model Medicalstore.tblUser
+   @{ 
+       Layout = null;
+   }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .bg {
+            /* The image used */
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .textbox {
+            height:29px !important;
+        }
+
+        .input-group-addon {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 0.1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+<body style="background-color: beige;">
+
+    @using (Html.BeginForm())
+    {
+        <div style="width:800px; margin:0 auto;margin-top: 50px;background-color: lightsteelblue;padding: 20px;border-radius: 8px;width: 400px;">
+            <div class="input-group">
+                <label style="font-weight:0px;">User Name: </label>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                @Html.TextBoxFor(model => model.Username)
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+            <br />
+            <div class="input-group" style="margin-bottom: 10px;">
+                <label style="margin-right: 6px;font-weight:0px;">Password:</label>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                @Html.TextBoxFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+
+            </div>
+            <div class="loginbtn" style="text-align: center;margin-top: 20px;">
+                <input style="width:125px;" type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            <div style="border: 1px solid red;background-color: #efd0d0;font-size: 11px;text-align: center;margin-top: 4%;">
+                @if (@ViewBag.Failedcount != null)
+                {
+                    <label style="color:red;"> Failed Attempt count is: @ViewBag.Failedcount</label>
+                }
+                @if (@ViewBag.NotValidUser != null)
+                {
+                    <label style="color:red;"> @ViewBag.NotValidUser</label>
+                }
+            </div>
+            
+        </div>
+    }
+</body>
+</html>
+
