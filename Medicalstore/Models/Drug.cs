@@ -6,7 +6,6 @@ using System.Web;
 
 namespace Medicalstore.Models
 {
-    //test
     public class DrugDetails
     {
         public int Drug_id { get; set; }
