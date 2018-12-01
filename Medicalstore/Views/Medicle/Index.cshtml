@@ -10,7 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style type="text/css">
+        .mySlides {
+            display: none;
+        }
+        
         .bg {
             /* The image used */
             /* Full height */
@@ -35,6 +40,28 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        .header {
+            padding: 10px 16px;
+            background: #555;
+            color: #f1f1f1;
+        }
+
+
+        /*Images Slide CSS*/
+        * {
+            box-sizing: border-box
+        }
+        body {
+            font-family: Verdana, sans-serif;
+           margin: 0
+        }
+        .mySlides {
+            display: none
+        }
+        img {
+            vertical-align: middle;
+        }
+
     </style>
 
 </head>
@@ -42,25 +69,28 @@
 
     @using (Html.BeginForm())
     {
-        <div style="width:800px; margin:0 auto;margin-top: 50px;background-color: lightsteelblue;padding: 20px;border-radius: 8px;width: 400px;">
+        <div class="header" id="myHeader">
+            <h2 style="font-family:serif">Medicine Information System</h2>
+        </div>
+        <div style="float: right;margin-right: 20px;margin-top: 20px;background-color: lightsteelblue;padding: 20px;border-radius: 8px;width: 600px;box-shadow: 0 0 10px #bdbcbc;">
             <div class="input-group">
                 <label style="font-weight:0px;">User Name: </label>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                @Html.TextBoxFor(model => model.Username)
+                @Html.TextBoxFor(model => model.Username,new { style= "width:80%;border-radius: 5px;height: 35px;placeholder:'U'" })
                 @Html.ValidationMessageFor(model => model.Username)
             </div>
             <br />
             <div class="input-group" style="margin-bottom: 10px;">
                 <label style="margin-right: 6px;font-weight:0px;">Password:</label>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                @Html.TextBoxFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password, new { style = "width:80%;border-radius: 5px;height: 35px;" })
                 @Html.ValidationMessageFor(model => model.Password)
 
             </div>
             <div class="loginbtn" style="text-align: center;margin-top: 20px;">
                 <input style="width:125px;" type="submit" value="Login" class="btn btn-primary" />
             </div>
-            <div style="border: 1px solid red;background-color: #efd0d0;font-size: 11px;text-align: center;margin-top: 4%;">
+            <div style="border: 1px solid;background-color: #efd0d0;font-size: 15px;text-align: center;margin-top: 4%;}">
                 @if (@ViewBag.Failedcount != null)
                 {
                     <label style="color:red;"> Failed Attempt count is: @ViewBag.Failedcount</label>
@@ -70,9 +100,31 @@
                     <label style="color:red;"> @ViewBag.NotValidUser</label>
                 }
             </div>
-            
         </div>
-    }
+        <div style="float:left;margin-left:10px;margin-top:5px">
+            <div class="w3-content w3-section" style="max-width:800px;height:270px">
+                <img class="mySlides w3-animate-left" src="~/Content/Medicine/11.jpg"  style="width:80%;height:400px" />
+                <img class="mySlides w3-animate-left" src="~/Content/Medicine/22.jpg" style="width:80%;height:400px" />
+                <img class="mySlides w3-animate-left" src="~/Content/Medicine/33.jpg" style="width:80%;height:400px">
+            </div>
+        </div>
+      }
 </body>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2500);    
+}
+</script>
 </html>
 

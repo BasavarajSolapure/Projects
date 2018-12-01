@@ -55,6 +55,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -120,9 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -197,12 +200,16 @@
     <Content Include="Content\Images\BackgroundImages\backgrd_6.png" />
     <Content Include="Content\Images\BackgroundImages\backgrd_7.gif" />
     <Content Include="Content\Images\BackgroundImages\backgrd_8.jpg" />
+    <Content Include="Content\Images\icon.png" />
     <Content Include="Content\Images\medicalImg.jpg" />
     <Content Include="Content\Images\SocialsitesLogo\FB.png" />
     <Content Include="Content\Images\SocialsitesLogo\Googleplus.png" />
     <Content Include="Content\Images\SocialsitesLogo\linkdin.png" />
     <Content Include="Content\Images\SocialsitesLogo\Twitter.png" />
     <Content Include="Content\Images\userlogo.png" />
+    <Content Include="Content\Medicine\11.jpg" />
+    <Content Include="Content\Medicine\22.jpg" />
+    <Content Include="Content\Medicine\33.jpg" />
     <Content Include="Content\Styles\LayoutCSS\jquery-ui.js" />
     <Content Include="Content\Styles\LayoutCSS\themesCSS.css" />
     <Content Include="favicon.ico" />
@@ -264,6 +271,8 @@
     <Content Include="Views\Medicle\Edit.cshtml" />
     <Content Include="Views\Medicle\Details.cshtml" />
     <Content Include="Views\Medicle\Search.cshtml" />
+    <Content Include="Views\Medicle\Contact.cshtml" />
+    <Content Include="Views\Medicle\GoogleMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

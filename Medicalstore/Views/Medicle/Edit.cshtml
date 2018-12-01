@@ -4,8 +4,8 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Edit the Drug Details </h4>
+    <div class="form-horizontal" style="text-align: -moz-center;margin-top:2%;background-color:#fff;border-radius:.5em;box-shadow: 0 0 10px #bdbcbc;padding: 21px 23px 0px 25px;">
+        <h4 style="color: #118CE5;width: 40%;font-weight:bold;">Edit the Drug Details </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.drug_id)

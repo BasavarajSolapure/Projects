@@ -151,5 +151,13 @@ namespace Medicalstore.Controllers
             return Json(citylst, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        public ActionResult GoogleMap()
+        {
+            return View();
+        }
     }
 }
